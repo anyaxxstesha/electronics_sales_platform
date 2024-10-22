@@ -22,6 +22,8 @@ class NetworkElement(models.Model):
 
     supplier = models.ForeignKey('self', default=None, on_delete=models.SET_DEFAULT, verbose_name='Поставщик',
                                  help_text='Укажите поставщика', **NULLABLE)
+    level = models.PositiveSmallIntegerField(default=0, verbose_name='Уровень иерархии',
+                                             help_text='Укажите уровень иерархии')
     debt = models.DecimalField(decimal_places=2, max_digits=20, default=0,
                                verbose_name='Задолженность перед поставщиком',
                                help_text='Укажите задолженность перед поставщиком')
