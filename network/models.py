@@ -1,4 +1,5 @@
 from django.db import models
+from rest_framework.exceptions import ValidationError
 
 NULLABLE = {'blank': True, 'null': True}
 
@@ -32,6 +33,15 @@ class NetworkElement(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, force_insert=False, force_update=False, using=None, update_fields=None):
+        if self.supplier is not None:
+            if self.supplier.level == 2:
+                raise ValidationError(
+                    'The object being created is the 4th in the supply chain(max 3). Change the supplier')
+            self.level = self.supplier.level + 1
+        super().save(*args, force_insert=force_insert, force_update=force_update, using=using,
+                     update_fields=update_fields)
 
     class Meta:
         verbose_name = 'Элемент сети'
