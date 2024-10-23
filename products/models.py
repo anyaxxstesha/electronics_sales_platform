@@ -14,3 +14,11 @@ class Product(models.Model):
                                verbose_name='Продавец', help_text='Укажите продавца', **NULLABLE)
     released_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата выхода продукта на рынок',
                                        help_text='Укажите дату выхода продукта на рынок')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+        ordering = ['-id']
