@@ -7,7 +7,6 @@ NULLABLE = {'blank': True, 'null': True}
 
 class Product(models.Model):
     title = models.CharField(max_length=128, verbose_name='Название', help_text='Укажите название')
-    email = models.EmailField(unique=True, verbose_name='Email', help_text='Укажите email')
     model = models.CharField(max_length=100, verbose_name='Модель продукта', help_text='Укажите модель продукта',
                              **NULLABLE)
     seller = models.ForeignKey(NetworkElement, on_delete=models.SET_NULL, related_name='product',
