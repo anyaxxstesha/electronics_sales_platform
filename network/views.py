@@ -1,3 +1,5 @@
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
@@ -14,6 +16,9 @@ class NetworkElementListAPIView(ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = NetworkElementSerializer
     queryset = NetworkElement.objects.all()
+    filter_backends = (filters.OrderingFilter, DjangoFilterBackend)
+    filterset_fields = ('city',)
+    ordering_fields = ('city',)
 
 
 class NetworkElementRetrieveAPIView(RetrieveAPIView):
