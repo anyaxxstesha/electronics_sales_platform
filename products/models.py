@@ -11,7 +11,7 @@ class Product(models.Model):
                              **NULLABLE)
     seller = models.ForeignKey(NetworkElement, on_delete=models.SET_NULL, related_name='product',
                                verbose_name='Продавец', help_text='Укажите продавца', **NULLABLE)
-    released_at = models.DateTimeField(**NULLABLE, verbose_name='Дата выхода продукта на рынок',
+    released_at = models.DateField(**NULLABLE, verbose_name='Дата выхода продукта на рынок',
                                        help_text='Укажите дату выхода продукта на рынок')
 
     def __str__(self):
